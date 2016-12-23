@@ -48,7 +48,7 @@ protected void onDestroy() {
     mZxingManager.release();
 }
 ```
-##扫码完成后继续扫码
+##3.扫码完成后继续扫码
 ```
  /**
  * 毫秒值
@@ -56,3 +56,4 @@ protected void onDestroy() {
 mZxingManager.restartScan(1000);
 ```
 
+**最后希望大家多提点建议来改进,喜欢的可以来个star鼓励一下**
