@@ -5,6 +5,8 @@
 如果你需要系定义activity的话还需要修改很大,本库把耦合的部分全部抽取到 Zxingmanager.java 中
 因此无论你是在activity,fragment 都可以使用.
 
+支持二维码和条码两种模式,支持扫码成功beep振动,支持扫码成功后预览
+
 #使用方法
 
 参考 CaptureActivity.java
@@ -46,5 +48,11 @@ protected void onDestroy() {
     mZxingManager.release();
 }
 ```
-
+##扫码完成后继续扫码
+```
+ /**
+ * 毫秒值
+ * */
+mZxingManager.restartScan(1000);
+```
 
