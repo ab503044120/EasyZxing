@@ -1,3 +1,10 @@
+
+#序言
+
+最近项目需要使用Zxing扫码功能在github中看了一些库,发现这些库的CaptureActiviy和其他类的耦合性太高了,
+如果你需要系定义activity的话还需要修改很大,本库把耦合的部分全部抽取到 Zxingmanager.java 中
+因此无论你是在activity,fragment 都可以使用.
+
 #使用方法
 
 参考 CaptureActivity.java
