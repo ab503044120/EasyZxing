@@ -27,6 +27,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.0.1'
     testCompile 'junit:junit:4.12'
     compile project(':easyzxing')
+//    compile 'org.huihui:easyzxing:1.0'
 }
 
 
