@@ -2,7 +2,7 @@
 
 参考 CaptureActivity.java
 ##1.创建初始化ZxingManager
-`
+```
 /**
  * @param context                 activity 必要
  * @param viewFinderViewInterface 刷新的viev
@@ -25,9 +25,9 @@ mZxingManager.setZxingManagerListener(new ZxingManager.ZxingManagerListener() {
               //do something
           }
       });
-`
+```
 ## 2.写生命周期
-`
+```
 @Override
 protected void onResume() {
     super.onResume();
@@ -45,6 +45,6 @@ protected void onDestroy() {
     super.onDestroy();
     mZxingManager.release();
 }
-`
+```
 
 
