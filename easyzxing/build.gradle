@@ -33,14 +33,14 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.0.1'
 }
 //项目主页
-def siteUrl = 'https://github.com/linglongxin24/SQLite'    // project homepage
+def siteUrl = 'https://github.com/ab503044120/SimpleZxing'    // project homepage
 //项目的版本控制地址
-def gitUrl = 'https://github.com/linglongxin24/SQLite.git' // project git
+def gitUrl = 'https://github.com/ab503044120/SimpleZxing.git' // project git
 
 //发布到组织名称名字，必须填写
-group = "cn.bluemobi.dylan"
+group = "org.huihui"
 //发布到JCenter上的项目名字，必须填写
-def libName = "AndroidFastDevFrame"
+def libName = "SimpleZxing"
 // 版本号，下次更新是只需要更改版本号即可
 version = "1.0"
 /**  上面配置后上传至jcenter后的编译路径是这样的： compile 'cn.bluemobi.dylan:sqlitelibrary:1.0'  **/
