@@ -14,9 +14,11 @@
 mZxingManager = new ZxingManager(this, viewfinderView, view.getHolder(), false, true);
 
 //初始化
+
 mZxingManager.init();
 
 //设置获取结果后的监听
+
 mZxingManager.setZxingManagerListener(new ZxingManager.ZxingManagerListener() {
           @Override
           public void onSuccess(Result result, Bitmap barcode) {
