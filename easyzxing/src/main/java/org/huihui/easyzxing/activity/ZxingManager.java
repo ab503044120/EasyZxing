@@ -119,7 +119,9 @@ public class ZxingManager implements CaptrueInterface, SurfaceHolder.Callback {
 
     public void release() {
         mBeepManager.release();
-        mInactivityTimer.shutdown();
+        if (mInactivityTimer != null) {
+            mInactivityTimer.shutdown();
+        }
         onPause();
     }
 
@@ -130,8 +132,10 @@ public class ZxingManager implements CaptrueInterface, SurfaceHolder.Callback {
     @Override
     public void handleDecode(Result result, Bitmap barcode) {
         mBeepManager.playBeepSoundAndVibrate();
-        mInactivityTimer.onActivity();
-        if (mViewFinderViewInterface!=null) {
+        if (mInactivityTimer != null) {
+            mInactivityTimer.onActivity();
+        }
+        if (mViewFinderViewInterface != null) {
             mViewFinderViewInterface.showPreView(barcode);
         }
         if (mZxingManagerListener != null) {
