@@ -55,7 +55,9 @@ public class BeepManager implements MediaPlayer.OnCompletionListener {
     }
 
     public void release() {
-        mediaPlayer.release();
+        if (mediaPlayer!=null) {
+            mediaPlayer.release();
+        }
         mediaPlayer = null;
         mContext = null;
     }

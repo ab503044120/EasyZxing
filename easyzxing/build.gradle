@@ -2,12 +2,12 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 android {
-    compileSdkVersion 25
+    compileSdkVersion 24
     buildToolsVersion "25.0.0"
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 25
+        targetSdkVersion 24
         versionCode 1
         versionName "1.0"
 
@@ -27,10 +27,9 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.0.1'
+    compile 'com.android.support:appcompat-v7:24.2.1'
     testCompile 'junit:junit:4.12'
     compile 'com.google.zxing:core:3.3.0'
-    compile 'com.android.support:appcompat-v7:25.0.1'
 }
 //项目主页
 def siteUrl = 'https://github.com/ab503044120/EazyZxing'    // project homepage
@@ -42,7 +41,7 @@ group = "org.huihui"
 //发布到JCenter上的项目名字，必须填写
 def libName = "EazyZxing"
 // 版本号，下次更新是只需要更改版本号即可
-version = "1.0"
+version = "1.0.6"
 /**  上面配置后上传至jcenter后的编译路径是这样的： compile 'cn.bluemobi.dylan:sqlitelibrary:1.0'  **/
 
 //生成源文件
@@ -111,7 +110,7 @@ artifacts {
 //    }
 //}
 
-//上传到jcenter
+//上传到jcenter  gradlew bintrayUpload
 Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
 bintray {
@@ -121,7 +120,7 @@ bintray {
     pkg {
         repo = "maven"
         name = libName    //发布到JCenter上的项目名字，必须填写
-        desc = 'This is a lightweight SQLite database framework'    //项目描述
+        desc = 'This is zxinglib'    //项目描述
         websiteUrl = siteUrl
         vcsUrl = gitUrl
         licenses = ["Apache-2.0"]

@@ -69,6 +69,11 @@ public class CaptureActivity extends AppCompatActivity implements OnClickListene
         intent.putExtra(Extras.ONLY_ONE_D, onlyOneD);
         fragment.startActivityForResult(intent, requestCode);
     }
+    public static void start(android.support.v4.app.Fragment fragment, boolean onlyOneD, int requestCode) {
+        Intent intent = new Intent(fragment.getActivity(), CaptureActivity.class);
+        intent.putExtra(Extras.ONLY_ONE_D, onlyOneD);
+        fragment.startActivityForResult(intent, requestCode);
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

@@ -82,12 +82,6 @@ public class ZxingManager implements CaptrueInterface, SurfaceHolder.Callback {
                 mInactivityTimer = new InactivityTimer(mContext);
             }
             CameraManager.init(mContext.getApplicationContext(), isOneD);
-            if (mSurfaceHolder == null) {
-                //如果没有sufaceview
-                prepare();
-            } else {
-                mSurfaceHolder.addCallback(this);
-            }
         }
 
     }
@@ -114,6 +108,8 @@ public class ZxingManager implements CaptrueInterface, SurfaceHolder.Callback {
     public void onResume() {
         if (isSurfaceCreated) {
             prepare();
+        }else{
+            mSurfaceHolder.addCallback(this);
         }
     }
 
@@ -164,6 +160,7 @@ public class ZxingManager implements CaptrueInterface, SurfaceHolder.Callback {
     public void surfaceCreated(SurfaceHolder holder) {
         if (!isSurfaceCreated) {
             prepare();
+            isSurfaceCreated = true;
         }
     }
 
