@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@id/gridViewItemLy" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="vertical" android:id="@id/context_layout" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerInParent="true">
+        <ImageView android:layout_gravity="center|top" android:id="@id/item_icon" android:layout_width="70.0dip" android:layout_height="70.0dip" android:scaleType="fitCenter" />
+        <TextView android:textColor="@color/gray" android:ellipsize="end" android:gravity="center" android:id="@id/item_text" android:layout_width="74.0dip" android:layout_height="30.0dip" android:singleLine="true" />
+    </LinearLayout>
+</RelativeLayout>

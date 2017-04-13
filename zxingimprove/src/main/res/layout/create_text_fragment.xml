@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="@android:color/white" android:clickable="true" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="vertical" android:id="@id/layout" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerInParent="true">
+        <ImageView android:layout_gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ic_launcher" />
+        <TextView android:textSize="20.0sp" android:layout_gravity="center_horizontal" android:padding="10.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="这是生成文本界面" />
+    </LinearLayout>
+    <RelativeLayout android:id="@id/simple_fragment" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+</RelativeLayout>
