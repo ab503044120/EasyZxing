@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:background="@android:color/transparent" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_margin="0.0dip"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <ImageView android:id="@id/dialog_gift_more_item_indicator" android:focusable="true" android:visibility="invisible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/dialog_gift_more_item_indicator" android:layout_centerHorizontal="true" />
-    <ImageView android:id="@id/dialog_notifycku_more_item_image" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="13.0dip" android:layout_marginTop="2.0dip" android:layout_marginRight="13.0dip" android:layout_marginBottom="6.0dip" android:scaleType="fitCenter" android:adjustViewBounds="true" android:layout_below="@id/dialog_gift_more_item_indicator" android:layout_centerHorizontal="true" />
-    <TextView android:textStyle="bold" android:textColor="@android:color/black" android:id="@id/dialog_notifycku_more_item_text" android:paddingBottom="10.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:maxLines="1" android:layout_below="@id/dialog_notifycku_more_item_image" android:layout_centerHorizontal="true" />
-</RelativeLayout>

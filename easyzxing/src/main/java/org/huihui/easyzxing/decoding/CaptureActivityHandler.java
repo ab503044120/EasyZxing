@@ -16,14 +16,11 @@
 
 package org.huihui.easyzxing.decoding;
 
-import android.graphics.Bitmap;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
 import com.google.zxing.BarcodeFormat;
-import com.google.zxing.Result;
 
 import org.huihui.easyzxing.R;
 import org.huihui.easyzxing.ViewFinderViewInterface;
@@ -78,14 +75,7 @@ public final class CaptureActivityHandler extends Handler {
         } else if (message.what == R.id.decode_succeeded) {
             Log.d(TAG, "Got decode succeeded message");
             state = State.SUCCESS;
-            Bundle bundle = message.getData();
-
-            /***********************************************************************/
-            Bitmap barcode = bundle == null ? null : (Bitmap) bundle
-                    .getParcelable(DecodeThread.BARCODE_BITMAP);
-
-            captrueInterface.handleDecode((Result) message.obj, barcode);
-            /***********************************************************************/
+            captrueInterface.handleDecode((BarcodeResult) message.obj);
         } else if (message.what == R.id.decode_failed) {
             // We're decoding as fast as possible, so when one decode fails,
             // start another.

@@ -29,8 +29,8 @@ import com.google.zxing.ResultPoint;
 
 import org.huihui.easyzxing.camera.CameraManager;
 
-import java.util.Collection;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import static android.graphics.PixelFormat.OPAQUE;
 
@@ -41,13 +41,13 @@ import static android.graphics.PixelFormat.OPAQUE;
  * animation and result points.
  */
 public final class ViewfinderView extends View implements ViewFinderViewInterface {
-    private static final long ANIMATION_DELAY = 15L;
+    private static final long ANIMATION_DELAY = 10L;
     private static int BORDER_WIDTH;
     private static int BORDER_HEIGHT;
     private static int LASER_HEIGHT;
     private static int LASER_PADDING;
     private static int LASER_OFFSET_INCREASE;
-
+    protected static final int MAX_RESULT_POINTS = 20;
     private Paint mFinderMaskPaint;
     private Paint mBorderPaint;
     private Paint mLaserPaint;
@@ -56,8 +56,8 @@ public final class ViewfinderView extends View implements ViewFinderViewInterfac
     private final int mFrameColor;
     private final int mLaserColor;
     private int mLaserOffset = 0;
-    private Collection<ResultPoint> possibleResultPoints;
-    private Collection<ResultPoint> lastPossibleResultPoints;
+    private List<ResultPoint> possibleResultPoints;
+    private List<ResultPoint> lastPossibleResultPoints;
     private final int resultPointColor = 0xc0ffff00;
     private final Paint dotPaint;
     private Bitmap resultBitmap;
@@ -86,7 +86,7 @@ public final class ViewfinderView extends View implements ViewFinderViewInterfac
         mLaserPaint.setColor(mLaserColor);
         mLaserPaint.setStrokeWidth(dp2px(1.1f));
 
-        possibleResultPoints = new HashSet<ResultPoint>(5);
+        possibleResultPoints = new ArrayList<>(5);
         dotPaint = new Paint();
     }
 
@@ -105,12 +105,12 @@ public final class ViewfinderView extends View implements ViewFinderViewInterfac
             dotPaint.setAlpha(OPAQUE);
             canvas.drawBitmap(resultBitmap, frame.left, frame.top, dotPaint);
         } else {
-            Collection<ResultPoint> currentPossible = possibleResultPoints;
-            Collection<ResultPoint> currentLast = lastPossibleResultPoints;
+            List<ResultPoint> currentPossible = possibleResultPoints;
+            List<ResultPoint> currentLast = lastPossibleResultPoints;
             if (currentPossible.isEmpty()) {
                 lastPossibleResultPoints = null;
             } else {
-                possibleResultPoints = new HashSet<ResultPoint>(5);
+                possibleResultPoints = new ArrayList<ResultPoint>(5);
                 lastPossibleResultPoints = currentPossible;
                 dotPaint.setAlpha(OPAQUE);
                 dotPaint.setColor(resultPointColor);
@@ -142,7 +142,13 @@ public final class ViewfinderView extends View implements ViewFinderViewInterfac
     }
 
     public void addPossibleResultPoint(ResultPoint point) {
-        possibleResultPoints.add(point);
+        List<ResultPoint> points = possibleResultPoints;
+        points.add(point);
+        int size = points.size();
+        if (size > MAX_RESULT_POINTS) {
+            // trim it
+            points.subList(0, size - MAX_RESULT_POINTS / 2).clear();
+        }
     }
 
     private void drawViewFinderMask(Canvas canvas, Rect frame) {

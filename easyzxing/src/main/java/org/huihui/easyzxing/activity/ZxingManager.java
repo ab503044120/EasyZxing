@@ -2,6 +2,7 @@ package org.huihui.easyzxing.activity;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Handler;
 import android.view.SurfaceHolder;
 
@@ -12,6 +13,7 @@ import org.huihui.easyzxing.R;
 import org.huihui.easyzxing.ViewFinderViewInterface;
 import org.huihui.easyzxing.camera.BeepManager;
 import org.huihui.easyzxing.camera.CameraManager;
+import org.huihui.easyzxing.decoding.BarcodeResult;
 import org.huihui.easyzxing.decoding.CaptureActivityHandler;
 import org.huihui.easyzxing.decoding.InactivityTimer;
 
@@ -126,16 +128,16 @@ public class ZxingManager implements CaptrueInterface, SurfaceHolder.Callback {
     }
 
     @Override
-    public void handleDecode(Result result, Bitmap barcode) {
+    public void handleDecode(BarcodeResult barcode) {
         mBeepManager.playBeepSoundAndVibrate();
         if (mInactivityTimer != null) {
             mInactivityTimer.onActivity();
         }
         if (mViewFinderViewInterface != null) {
-            mViewFinderViewInterface.showPreView(barcode);
+            mViewFinderViewInterface.showPreView(barcode.getBitmapWithResultPoints(Color.YELLOW));
         }
         if (mZxingManagerListener != null) {
-            mZxingManagerListener.onSuccess(result, barcode);
+            mZxingManagerListener.onSuccess(barcode.getResult(), barcode.getBitmapWithResultPoints(Color.YELLOW));
         }
     }
 
