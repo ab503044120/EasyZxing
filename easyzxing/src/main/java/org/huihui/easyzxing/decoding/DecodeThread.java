@@ -42,6 +42,7 @@ public final class DecodeThread extends Thread {
     private final CountDownLatch handlerInitLatch;
 
     public DecodeThread(CaptrueInterface activity, Vector<BarcodeFormat> decodeFormats, String characterSet, ResultPointCallback resultPointCallback) {
+        super("DecodeThread");
         this.activity = activity;
         handlerInitLatch = new CountDownLatch(1);
 
