@@ -22,6 +22,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
+import org.huihui.easyzxing.decoding.SourceData;
+
 public final class PreviewCallback implements Camera.PreviewCallback {
     private static final String TAG = PreviewCallback.class.getSimpleName();
     private final CameraConfigurationManager configManager;
@@ -45,7 +47,8 @@ public final class PreviewCallback implements Camera.PreviewCallback {
             camera.setPreviewCallback(null);
         }
         if (previewHandler != null) {
-            Message message = previewHandler.obtainMessage(previewMessage, cameraResolution.x, cameraResolution.y, data);
+            SourceData source = new SourceData(data, cameraResolution.x, cameraResolution.y, camera.getParameters().getPreviewFormat(), 90);
+            Message message = previewHandler.obtainMessage(previewMessage, source);
             message.sendToTarget();
             previewHandler = null;
         } else {

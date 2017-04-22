@@ -57,6 +57,6 @@ mZxingManager.restartScan(1000);
 ```
 jcenter地址: 
 ```
-compile 'org.huihui:easyzxing:1.0.7'
+compile 'org.huihui:easyzxing:1.1.0'
 ```
 **最后希望大家多提点建议来改进,喜欢的可以来个star鼓励一下**

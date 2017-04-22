@@ -14,7 +14,6 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.BinaryBitmap;
@@ -124,12 +123,13 @@ public class CaptureActivity extends AppCompatActivity implements OnClickListene
      * Handler scan result
      */
     public void handleDecode(Result result, Bitmap barcode) {
-        if (TextUtils.isEmpty(result.getText())) {
-            Toast.makeText(this, "扫描失败", Toast.LENGTH_SHORT).show();
-            finish();
-        } else {
-            handleScanResult(result.getText());
-        }
+        mZxingManager.restartScan(1000);
+//        if (TextUtils.isEmpty(result.getText())) {
+//            Toast.makeText(this, "扫描失败", Toast.LENGTH_SHORT).show();
+//            finish();
+//        } else {
+//            handleScanResult(result.getText());
+//        }
     }
 
     @Override

@@ -24,6 +24,7 @@ import android.util.Log;
 
 import com.google.zxing.BinaryBitmap;
 import com.google.zxing.DecodeHintType;
+import com.google.zxing.LuminanceSource;
 import com.google.zxing.MultiFormatReader;
 import com.google.zxing.ReaderException;
 import com.google.zxing.Result;
@@ -51,7 +52,7 @@ public final class DecodeHandler extends Handler {
     @Override
     public void handleMessage(Message message) {
         if (message.what == R.id.decode) {
-            decode((byte[]) message.obj, message.arg1, message.arg2);
+            decode((SourceData) message.obj);
         } else if (message.what == R.id.quit) {
             Looper.myLooper().quit();
         }
@@ -64,6 +65,30 @@ public final class DecodeHandler extends Handler {
 //                Looper.myLooper().quit();
 //                break;
 //        }
+    }
+
+    private void decode(SourceData sourceData) {
+        long start = System.currentTimeMillis();
+        Result rawResult = null;
+        sourceData.setCropRect(CameraManager.get().getFramingRectInPreview());
+        LuminanceSource source = sourceData.createSource();
+        try {
+            rawResult = multiFormatReader.decodeWithState(new BinaryBitmap(new HybridBinarizer(source)));
+        } catch (ReaderException re) {
+            // continue
+        } finally {
+            multiFormatReader.reset();
+        }
+
+        if (rawResult != null) {
+            long end = System.currentTimeMillis();
+            Log.d(TAG, "Found barcode (" + (end - start) + " ms):\n" + rawResult.toString());
+            Message message = Message.obtain(activity.getHandler(), R.id.decode_succeeded,  new BarcodeResult(rawResult, sourceData));
+            message.sendToTarget();
+        } else {
+            Message message = Message.obtain(activity.getHandler(), R.id.decode_failed);
+            message.sendToTarget();
+        }
     }
 
     /**
